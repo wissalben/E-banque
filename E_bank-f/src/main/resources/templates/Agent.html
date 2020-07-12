@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="template">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" />
+    <meta charset="UTF-8">
+    <title>My Bank</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="menu">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header blueish">Consultation</div>
+                    <div class="card-body">
+                        <form th:action="@{/ListeClients}" method="get">
+                            <div>
+                                <label>Agents:</label>
+                                <select data-live-search="true" class="form-control selectpicker" name="numeroAgent" >
+                                    <option selected hidden th:value="-1"> Select
+                                    </option>
+                                    <option th:each="A:${Agents}"  th:text="${A.nom}+' '+${A.prenom}" th:value="${A.numeroAgent}"></option>
+                                </select><br/><br/>
+                                <button type="submit" class="btn btn-primary">Consulter Agent</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" th:if="${agent}">
+                    <div class="card-header blueish" >Information sur l'Agent :</div>
+                    <div class="card-body">
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Numero d\'Agent: '+${agent.numeroAgent}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Nom: '+${agent.nom}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Prenom: '+${agent.prenom}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Date de naissance: '+${agent.dateNaissance}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Adresse: '+${agent.adresse}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Fonction: '+${agent.fonction}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Status Social: '+${agent.statusSocial}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'CIN: '+${agent.CNI}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Date d\'embauche: '+${agent.dateEmbauche}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Salaire: '+${agent.salaire}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Description: '+${agent.description}"></h6>
+                        </div><br/>
+                        <div>
+                            <h6 class="card-subtitle mb-2" th:text="'Nom d\'utilisateur: '+${agent.nomUtilisateur}"></h6>
+                        </div><br/>
+                        <div>
+                            <form th:action="@{FormulaireAgent}">
+                                <input type="hidden" name="numeroAgent" th:value="${agent.numeroAgent}">
+                                <button class="btn btn-primary" type="submit">Modifier</button>
+                            </form><br/>
+                            <form th:action="@{supprimer}" method="post">
+                                <input type="hidden" name="numeroAgent" th:value="${agent.numeroAgent}"/>
+                                <button onclick="return confirm('Etes vous sur?')" class="btn btn-primary" type="submit">Supprimer</button>
+                            </form>
+                            <div class="text-danger" th:text="${#httpServletRequest.getParameter('err')}"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br/>
+        <div class="row">
+            <div class="col">
+                <div class="card" th:if="${agent}">
+                    <div class="card-header blueish">La liste des Clients</div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>Numero Client</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Date de naissance</th>
+                                <th>Adresse</th>
+                                <th>Fonction</th>
+                                <th>Status social</th>
+                                <th>Cni</th>
+                                <th>nomUtilisateur</th>
+                                <th>Active</th>
+                                <th>+Infos</th>
+                            </tr>
+                            <tr th:each="c:${listeClients}">
+                                <td th:text="${c.numeroClient}"></td>
+                                <td th:text="${c.getNom()}"></td>
+                                <td th:text="${c.getPrenom()}"></td>
+                                <td th:text="${c.getDateNaissance()}"></td>
+                                <td th:text="${c.getAdresse()}"></td>
+                                <td th:text="${c.fonction}"></td>
+                                <td th:text="${c.getStatusSocial()}"></td>
+                                <td th:text="${c.getCNI()}"></td>
+                                <td th:text="${c.getNomUtilisateur()}"></td>
+                                <td th:text="${c.isActive()}"></td>
+                                <td >
+                                    <a  th:href="@{/ListeComptes(numeroClient=${c.numeroClient})}">Consulter</a>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="container" >
+                            <ul class="nav nav-pills">
+                                <li class="nav-item" th:each="c,status:${pages}">
+                                    <a  th:class="${status.index==currentPage}?'nav-link active':'nav-link'" th:text="${status.index}" th:href="@{/ListeClients(numeroAgent=${agent.numeroAgent},p=${status.index},s=5)}">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

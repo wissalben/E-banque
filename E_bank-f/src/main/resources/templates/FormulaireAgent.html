@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="template">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" />
+    <meta charset="UTF-8">
+    <title>My Bank</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="formContainer">
+        <div class="card">
+            <div class="card-header blueish">Modifier les informations de l'agent :</div>
+            <div class="card-body">
+                <form th:action="@{/save}" method="post" >
+                    <input type="hidden" name="numeroAgent" th:value="${agent.numeroAgent}"/>
+                    <div class="form-group">
+                        <label class="control-label">Nom:</label>
+                        <input class="form-control" type="text" name="nom" th:value="${agent.nom}">
+                        <span class="text-danger" th:errors="${agent.nom}" ></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Prenom:</label>
+                        <input class="form-control" type="text" name="prenom" th:value="${agent.prenom}">
+                        <span class="text-danger" th:errors="${agent.prenom}" ></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Date de Naissance:</label>
+                        <input class="form-control" type="text" name="DateDeNaissance" placeholder="dd/mm/yyyy" th:value="${dateDeNaissance}">
+                        <span class="text-danger" th:errors="${agent.dateNaissance}" ></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Adresse:</label>
+                        <input class="form-control" type="text" name="adresse" th:value="${agent.adresse}">
+                        <span class="text-danger" th:errors="${agent.adresse}" ></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Fonction:</label>
+                        <input class="form-control" type="text" name="fonction" th:value="${agent.fonction}">
+                        <span class="text-danger" th:errors="${agent.fonction}" ></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Status social:</label>
+                        <input class="form-control" type="text" name="statusSocial" th:value="${agent.statusSocial}">
+                        <span class="text-danger" th:errors="${agent.statusSocial}" ></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Cni:</label>
+                        <input class="form-control" type="text" name="CNI"  th:value="${agent.CNI}">
+                        <span class="text-danger" th:errors="${agent.CNI}" ></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Salaire:</label>
+                        <input class="form-control" type="text" name="salaire" th:value="${agent.salaire}">
+                        <span class="text-danger" th:errors="${agent.salaire}" ></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Description:</label>
+                        <input class="form-control" type="text" name="description" th:value="${agent.description}">
+                        <span class="text-danger" th:errors="${agent.description}" ></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Enregistrer les modifications
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

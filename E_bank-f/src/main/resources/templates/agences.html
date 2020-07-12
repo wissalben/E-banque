@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="template">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" />
+    <meta charset="UTF-8">
+    <title>My Bank</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="menu">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header blueish">Choisir une agence:</div>
+                <div class="card-body">
+                    <form th:action="@{consulterAgence}" method="get" id="myForm">
+                        <div class="form-group">
+                            <label>Agence:</label>
+                            <select class="form-control selectpicker" data-live-search="true" name="numeroAgence">
+                                <option selected hidden th:value="-1"> Select
+                                </option>
+                                <option th:each="agence:${agences}" th:text="${agence.nomAgence}" th:value="${agence.numeroAgence}"></option>
+                            </select><br/>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Consulter Agence</button>
+                    </form>
+                    <br/>
+                    <form th:action="@{addAgence}" method="get">
+                        <button class="btn btn-primary" type="submit">Nouvelle Agence</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" th:if="${agence}">
+                <div class="card-header blueish">Info sur l'Agence Choisie:</div>
+                <div class="card-body">
+                    <div>
+                        <h6 class="card-subtitle mb-2" th:text="'Numero d\'Agence:   '+${agence.numeroAgence}"></h6>
+                    </div><br/>
+                    <div>
+                        <h6 class="card-subtitle mb-2" th:text="'Nom:   '+${agence.nomAgence}"></h6>
+                    </div><br/>
+                    <div>
+                        <h6 class="card-subtitle mb-2" th:text="'E-mail:   '+${agence.email}"></h6>
+                    </div><br/>
+                    <div>
+                        <h6 class="card-subtitle mb-2" th:text="'Date de Creation:   '+${agence.dateCreation}"></h6>
+                    </div><br/>
+                    <div>
+                        <h6 class="card-subtitle mb-2" th:text="'Adresse:   '+${agence.adresse}"></h6>
+                    </div><br/>
+                    <div>
+                        <h6 class="card-subtitle mb-2" th:text="'Numero de Fix:   '+${agence.fixe}"></h6>
+                    </div><br/>
+                    <div>
+                        <h6 class="card-subtitle mb-2" th:text="'Numero de Telephone:   '+${agence.tele}"></h6>
+                    </div><br/>
+                    <form th:action="@{modifier}" method="get">
+                        <input type="hidden" name="numeroAgence" th:value="${agence.numeroAgence}"/>
+                        <button class="btn btn-primary" type="submit">Modifier</button>
+                    </form><br/>
+                    <form th:action="@{supprimerAgence}" method="post">
+                        <input type="hidden" name="numeroAgence" th:value="${agence.numeroAgence}"/>
+                        <button onclick="return confirm('Etes vous sur de supprimer cette agence? \n NB:Si l agence contient des agents, la suppression ne sera pas effectuée!')" class="btn btn-primary" type="submit">Supprimer</button>
+                    </form>
+                    <label class="red" th:text="${#httpServletRequest.getParameter('err')}"></label>
+                </div>
+            </div>
+        </div>
+    </div> <br/>
+    <div class="row">
+        <div class="col">
+            <div class="card" th:if="${agence}">
+                <div class="card-header blueish" th:text="'Liste des agents de '+${agence.nomAgence}"></div>
+                <div class="card-body">
+                    <table class="table table-striped table-borderless">
+                        <thead>
+                            <tr>
+                                <th>NumeroAgent</th><th>Nom</th><th>Prenom</th><th>CIN</th><th>Date de Naissance</th><th>Adresse</th><th>Date Embauche</th><th>Salaire</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="agent:${agents}">
+                                <td th:text="${agent.numeroAgent}"></td>
+                                <td th:text="${agent.nom}"></td>
+                                <td th:text="${agent.prenom}"></td>
+                                <td th:text="${agent.CNI}"></td>
+                                <td th:text="${agent.dateNaissance}"></td>
+                                <td th:text="${agent.adresse}"></td>
+                                <td th:text="${agent.dateEmbauche}"></td>
+                                <td th:text="${agent.salaire}"></td>
+                                <td><a th:href="@{ListeClients(numeroAgent = ${agent.numeroAgent})}">consulter</a></td>
+                            </tr>
+                        </tbody>
+                    </table><br/>
+                    <div class="menu2">
+                    <ul class="nav nav-pills">
+                        <li class="nav-item" th:each="p,status:${pages}">
+                            <a th:class="${page==status.index}?'nav-link active':'nav-link'" th:href="@{agences(numeroAgence = ${agence.numeroAgence}, page = ${status.index}, size = 5)}" th:text="${status.index}"></a>
+                        </li>
+                    </ul></div><br/>
+                    <form th:action="@{addAgent}" method="get">
+                        <input type="hidden" name="numeroAgence" th:value="${agence.numeroAgence}"/>
+                        <button type="submit" class="btn btn-primary">Nouveau Agent</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

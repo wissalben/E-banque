@@ -1,0 +1,15 @@
+.guide-container{
+   padding-top: 5%;
+   padding-bottom: 5%;
+}
+
+.guide-text-container{
+    padding: 5%;
+   
+    background-color: #f2f2f2;
+    border-radius: 10px;
+
+}
+.guide-text{
+    font-size: 15pt;
+}

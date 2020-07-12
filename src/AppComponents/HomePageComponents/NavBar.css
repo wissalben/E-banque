@@ -1,0 +1,33 @@
+
+.parent-container{
+    margin-top:10px;
+}
+.navbar-brand{
+    font-weight: 600;
+    font-size: 24pt;
+    margin-left:50px;
+    
+}
+#e-letter {
+    color:#EDB545;
+}
+.navbar-toggler{
+    outline:none !important;
+    border:none !important;
+}
+.navbar-nav{
+    margin-left:auto;
+}
+
+.navbar-nav .nav-item .nav-link {
+   margin-left:100px;
+   margin-right:50px;
+   margin-top:15px;
+   color:#000;
+   float: right;
+   text-align:left;
+   
+}
+.navbar-collapse{
+    float: left;
+}

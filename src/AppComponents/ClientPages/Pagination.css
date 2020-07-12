@@ -1,0 +1,9 @@
+.page-link{
+    background-color: #EDB545 !important;
+    color:#fff !important;
+    margin-left:2px
+    
+}
+.page-link:hover{
+    cursor: pointer;
+}

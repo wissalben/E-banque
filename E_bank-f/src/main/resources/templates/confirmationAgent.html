@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="template">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" />
+    <meta charset="UTF-8">
+    <title>My Bank</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="formContainer">
+        <div class="card">
+            <div class="card-header blueish">Saisir les informations:</div>
+            <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted">Numero d'agent: </h6>
+                <label th:text="${agent.numeroAgent}"></label>
+                <h6 class="card-subtitle mb-2 text-muted">Nom: </h6>
+                <label th:text="${agent.nom}"></label>
+                <h6 class="card-subtitle mb-2 text-muted">Prenom: </h6>
+                <label th:text="${agent.prenom}"></label>
+                <h6 class="card-subtitle mb-2 text-muted">Date de Naissance: </h6>
+                <label th:text="${agent.dateNaissance}"></label>
+                <h6 class="card-subtitle mb-2 text-muted">CIN: </h6>
+                <label th:text="${agent.CNI}"></label>
+                <h6 class="card-subtitle mb-2 text-muted">Adresse: </h6>
+                <label th:text="${agent.adresse}"></label>
+                <h6 class="card-subtitle mb-2 text-muted">Status Social: </h6>
+                <label th:text="${agent.statusSocial}"></label>
+                <h6 class="card-subtitle mb-2 text-muted">Date d'embauche: </h6>
+                <label th:text="${agent.dateEmbauche}"></label>
+                <h6 class="card-subtitle mb-2 text-muted">Nom d'Utilisateur: </h6>
+                <label th:text="${agent.nomUtilisateur}"></label>
+                <h6 class="card-subtitle mb-2 text-muted">Mot de Passe: </h6>
+                <label th:text="${agent.motDePasse}"></label>
+                <form th:action="${isInAgence}?@{agences}:@{listeAgent}" method="get">
+                    <input type="hidden" name="numeroAgence" th:value="${agence.numeroAgence}"/>
+                    <input type="hidden" name="numeroAgent" th:value="-1"/>
+                    <button class="btn btn-primary" type="submit">Continuer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

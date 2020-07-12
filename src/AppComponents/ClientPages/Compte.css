@@ -1,0 +1,23 @@
+.operation-container , .historique-container{
+    margin-top:5%;
+    margin-bottom: 5%;
+    margin-left:4%
+}
+.les-operations , .historique-operations , .historique-recharges{
+    
+    padding:5% ;
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom : 5%;
+    background-color: #d8d8d8;
+    font-size: 16pt;
+    font-weight: 600;
+    
+}
+.les-operations:hover , .historique-operations:hover , .historique-recharges:hover{
+    cursor: pointer;
+    background-color: #c0c0c0;
+}
+
+

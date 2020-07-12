@@ -1,0 +1,21 @@
+.title-card{
+    color:#fff;
+}
+.cont-card{
+    background-color: #EDB545;
+    margin-bottom:15%;
+    
+}
+.acceder-btn{
+    background-color: #FAFCFF;
+    padding: 10px;
+    width:40%;
+    border-radius: 10px;
+    margin-left:30%;
+    color:#000;
+}
+.compte-non-actif{
+    color: #fff;
+    font-weight: 600;
+    font-size:16pt;
+}

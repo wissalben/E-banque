@@ -1,0 +1,15 @@
+.orange-btn{
+    color:#fff !important;
+    background-color: #EDB545;
+    margin-top:-5px;
+    font-size: 12pt;
+    font-weight: 600;
+    padding:10px 18px;
+    border-radius: 15px;
+}
+.orange-btn:hover{
+   
+    background-color: #fff;
+    color:#EDB545 !important;
+    border: 1px solid #EDB545;
+}

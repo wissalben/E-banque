@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="template">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" />
+    <meta charset="UTF-8">
+    <title>My Bank</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="col-md-6 ">
+        <div class="panel panel-primary">
+            <div class="panel-heading">les nouvelles info:</div>
+            <div class="panel-body">
+                <form th:action="@{/listeAgent}" method="post" >
+                    <div >
+                        <label >NumeroAgent:</label>
+                        <label  th:text="${agent.getNumeroAgent()}"></label>
+                    </div>
+                    <div >
+                        <label >Nom:</label>
+                        <label  th:text="${agent.getNom()}"></label>
+                    </div>
+                    <div >
+                        <label >Prenom:</label>
+                        <label  th:text="${agent.getPrenom()}"></label>
+                    </div>
+                    <div >
+                        <label >Date de Naissance:</label>
+                        <label  th:text="${agent.getDateNaissance()}"></label>
+                    </div>
+                    <div >
+                        <label >Adresse:</label>
+                        <label  th:text="${agent.getAdresse()}"></label>
+                    </div>
+                    <div >
+                        <label >Fonction:</label>
+                        <label  th:text="${agent.getFonction()}"></label>
+                    </div>
+                    <div >
+                        <label >Status social:</label>
+                        <label  th:text="${agent.getStatusSocial()}"></label>
+                    </div>
+                    <div >
+                        <label >Cni:</label>
+                        <label  th:text="${agent.getCNI()}"></label>
+                    </div>
+                    <div >
+                        <label >Date d'embauche:</label>
+                        <label  th:text="${agent.getDateEmbauche()}"></label>
+                    </div>
+                    <div >
+                        <label >Salaire:</label>
+                        <label  th:text="${agent.getSalaire()}"></label>
+                    </div>
+                    <div >
+                        <label >Description:</label>
+                        <label  th:text="${agent.getDescription()}">
+                    </div>
+                    <div>
+
+                        <button type="submit" class="btn btn-primary">
+                            Contunier
+                        </button>
+                    </div>
+                    <form/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

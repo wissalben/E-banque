@@ -1,0 +1,26 @@
+.agent-op-clients{
+    margin-top: 70px;
+}
+.claire{
+    background-color: #F2F2F2;
+}
+.claire:hover{
+    cursor: pointer;
+    background-color: rgb(233, 233, 233);
+}
+.fonce {
+    background-color: #C2BFBF;
+}
+.fonce:hover {
+    cursor: pointer;
+    background-color: rgb(151, 151, 151);
+}
+.media-cont{
+    margin-bottom: 15px;
+    border-radius: 150px;
+}
+.media-body p {
+    font-size: 14pt;
+    font-weight: 600;
+    padding-top: 30px;
+}

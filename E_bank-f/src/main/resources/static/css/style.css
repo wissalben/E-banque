@@ -1,0 +1,41 @@
+.menu{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.menu2{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.red{
+    color:red;
+}
+
+.blueish {
+    background-color: dodgerblue;
+    border: solid 1px dodgerblue;
+    color:white;
+}
+
+.borderd{
+    border-bottom: 5px solid dodgerblue;
+}
+
+.alert98{
+    margin-top: 150px;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+
+.formContainer{
+    margin-top: 70px;
+    margin-left: 370px;
+    margin-right: 370px;
+}
+
+.orangeish {
+    background-color: orange;
+    border: solid 1px darkorange;
+    color:white;
+}

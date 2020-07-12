@@ -1,0 +1,14 @@
+.client-acceuil-container{
+    margin-top:10%;
+}
+.client-acceuil-text{
+    font-size: 20pt;
+    font-weight:600;
+
+}
+#name-client{
+    color:#EDB545;
+}
+#st-col{
+    padding-top: 3%;
+}

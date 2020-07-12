@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="template">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" />
+    <meta charset="UTF-8">
+    <title>My Bank</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="menu">
+   <div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header blueish">Consultation</div>
+            <div class="card-body">
+                <form th:action="@{/ListeComptes}" method="get">
+                    <div>
+                        <label>Client:</label>
+                        <select class="form-control selectpicker" data-live-search="true"  name="numeroClient" >
+                            <option selected hidden th:value="-1"> Select
+                            </option>
+                            <option th:each="C:${Clients}"  th:text="${C.nomUtilisateur}" th:value="${C.numeroClient}"></option>
+                        </select><br/><br/>
+                        <button type="submit" class="btn btn-primary">Consulter Client</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" th:if="${client}">
+        <div class="card-header blueish" >Information sur client :</div>
+        <div class="card-body">
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Numero Client: '+${client.numeroClient}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Nom: '+${client.nom}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Prenom: '+${client.prenom}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Date de Naissance: '+${client.dateNaissance}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Adresse: '+${client.adresse}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Fonction: '+${client.fonction}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Status Social: '+${client.statusSocial}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'CIN: '+${client.CNI}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Nom d\'utilisateur: '+${client.nomUtilisateur}"></h6>
+            </div><br/>
+        </div>
+    </div>
+  </div>
+   </div><br/>
+     <div class="row">
+    <div class="col">
+    <div class="card" th:if="${client}">
+        <div class="card-header blueish">La liste des Clients</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>codeCompte</th>
+                    <th>dateCreation</th>
+                    <th>Solde</th>
+                    <th>type</th>
+                    <th>pin</th>
+                    <th>Etat</th>
+                    <th>Operation</th>
+                </tr>
+                <tr th:each="l:${listeComptes}">
+                    <td th:text="${l.getCodeCompte()}"></td>
+                    <td th:text="${l.getDateCreation()}"></td>
+                    <td th:text="${l.getSolde()}"></td>
+                    <td th:text="${l.class.simpleName}"></td>
+                    <td th:text="${l.getPin()}"></td>
+                     <td th:text="${l.isActif()==true ? 'Actif' : 'NonActif'}"></td>
+                     <td ><a  th:href="@{/ListeOperations(codeCompte=${l.codeCompte})}">Consulter</a></td>
+                </tr>
+            </table>
+            <div>
+                    <div class="container" >
+                <ul class="nav nav-pills">
+                    <li class="nav-item" th:each="l,status:${pages}">
+                        <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'" th:text="${status.index}" th:href="@{/ListeComptes(numeroClient=${client.numeroClient},p=${status.index},s=${s})}">
+                        </a>
+                    </li>
+                </ul>
+                </div>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+</div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="template">
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" />
+    <meta charset="UTF-8">
+    <title>My Bank</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="formContainer">
+       <div class="card">
+           <div class="card-header blueish">Saisir les informations:</div>
+           <div class="card-body">
+               <form th:action="@{saveAgence}" method="post">
+                   <input th:if="${agence}" type="hidden" name="numeroAgence" th:value="${agence.numeroAgence}"/>
+                   <div class="form-group">
+                       <h6 class="card-subtitle mb-2 text-muted">Nom d'agence: </h6>
+                       <input class="form-control" type="text" name="NomAgence" th:value="${agence}?${agence.nomAgence}:''"/>
+                       <span class="text-danger" th:errors="${agence.nomAgence}" ></span>
+                   </div>
+                   <div class="form-group">
+                       <h6 class="card-subtitle mb-2 text-muted">Adresse: </h6>
+                       <input class="form-control" type="text" name="adresse" th:value="${agence}?${agence.adresse}:''"/>
+                       <span class="text-danger" th:errors="${agence.adresse}" ></span>
+                   </div>
+                   <div class="form-group">
+                       <h6 class="card-subtitle mb-2 text-muted">E-mail: </h6>
+                       <input class="form-control" type="text" name="email" th:value="${agence}?${agence.email}:''"/>
+                       <span class="text-danger" th:errors="${agence.email}" ></span>
+                   </div>
+                   <div class="form-group">
+                       <h6 class="card-subtitle mb-2 text-muted">Numero Fix: </h6>
+                       <input class="form-control" type="text" name="fixe" th:value="${agence}?${agence.fixe}:''"/>
+                       <span class="text-danger" th:errors="${agence.fixe}" ></span>
+                   </div>
+                   <div class="form-group">
+                       <h6 class="card-subtitle mb-2 text-muted">Numero de Tele: </h6>
+                       <input class="form-control" type="text" name="tele" th:value="${agence}?${agence.tele}:''"/>
+                       <span class="text-danger" th:errors="${agence.tele}" ></span>
+                   </div>
+                   <div class="form-group">
+                       <h6 class="card-subtitle mb-2 text-muted">Description: </h6>
+                       <input class="form-control" type="text" name="description" th:value="${agence}?${agence.description}:''"/>
+                       <span class="text-danger" th:errors="${agence.description}" ></span>
+                   </div>
+                   <div class="form-group">
+                       <h6 class="card-subtitle mb-2 text-muted">Autorisation: </h6>
+                       <input class="form-control" type="text" name="autorisation" th:value="${agence}?${agence.autorisation}:''"/>
+                       <span class="text-danger" th:errors="${agence.autorisation}" ></span>
+                   </div>
+                   <button class="btn btn-primary" type="submit">Enregistrer</button>
+               </form>
+           </div>
+       </div>
+    </div>
+</div>
+</body>
+</html>

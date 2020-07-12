@@ -1,0 +1,35 @@
+.virement-container{
+    margin-bottom: 5%;
+}
+.form-virement-container{
+    padding: 7% 5%;
+    background-color: #f2f2f2;
+    width:80%
+}
+.form-virement-container > form > input {
+    width:65%;
+    text-align:center;
+    border:none;
+    outline:none;
+    padding: 10px 0;
+}
+#submit-virement-btn{
+    color:#fff;
+    padding: 10px 40px ;
+    background-color: #EDB545;
+    border:none;
+    outline:none;
+    border-radius: 10px;
+}
+#submit-virement-btn:hover{
+    background-color: rgb(233, 162, 21);
+}
+.resultat-virement-text{
+    font-size:16pt;
+    margin-top:20px;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

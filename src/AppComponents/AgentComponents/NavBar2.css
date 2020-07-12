@@ -1,0 +1,35 @@
+
+.navbar-brand{
+    font-weight: 600;
+    font-size: 26pt;
+    margin-left:41%;
+    margin-top: 10px;
+    
+}
+#e-letter {
+    color:#EDB545;
+}
+
+#agent{
+    font-size: 14pt !important;
+}
+.navbar-toggler{
+    outline:none !important;
+    border:none !important;
+}
+.navbar-nav{
+    margin-left:auto;
+}
+
+.navbar-nav .nav-item .nav-link {
+   margin-left:100px;
+   margin-right:50px;
+   margin-top:15px;
+   color:#000;
+   float: right;
+   text-align:left;
+   
+}
+.navbar-collapse{
+    float: left;
+}

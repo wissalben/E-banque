@@ -1,0 +1,11 @@
+.page-num {
+    font-size: 15pt; 
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 15px;
+    text-decoration: underline;
+}
+h3 {
+    padding-top: 20%;
+    padding-bottom: 20%;
+}

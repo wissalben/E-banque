@@ -1,0 +1,26 @@
+.recharge-container{
+    margin-bottom: 5%;
+}
+.form-recharge-container{
+    padding: 7% 5%;
+    background-color: #f2f2f2;
+    width:80%
+}
+.form-recharge-container > form > input {
+    width:65%;
+    text-align:center;
+    border:none;
+    outline:none;
+    padding: 10px 0;
+}
+#submit-recharge-btn{
+    color:#fff;
+    padding: 10px 40px ;
+    background-color: #EDB545;
+    border:none;
+    outline:none;
+    border-radius: 10px;
+}
+#submit-recharge-btn:hover{
+    background-color: rgb(233, 162, 21);
+}

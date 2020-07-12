@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="template">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{css/style.css}" />
+    <meta charset="UTF-8">
+    <title>My Bank</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="menu">
+   <div class="row">
+          <div class="col">
+    <div class="card" th:if="${compte}">
+        <div class="card-header blueish" >Information sur le compte :</div>
+        <div class="card-body">
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Code de Compte: '+${compte.codeCompte}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Date de Creation: '+${compte.dateCreation}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Solde: '+${compte.solde}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Type de Compte: '+${compte.class.simpleName}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'PIN: '+${compte.pin}"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Etat du compte: ' + (${compte.isActif()}?'Actif':'NonActif')"></h6>
+            </div><br/>
+            <div>
+                <h6 class="card-subtitle mb-2" th:text="'Client: '+${compte.client.nom}+' '+${compte.client.prenom}"></h6>
+            </div><br/>
+            
+            
+        </div>
+    </div>
+  </div>
+
+    <div class="col col-lg-9">
+    <div class="card" th:if="${compte}">
+        <div class="card-header blueish">La liste des operations</div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>codeCompte</th>
+                    <th>dateCreation</th>
+                    <th>Montant</th>
+                    <th>Operation</th>
+                    <th>code du compte destinataire:</th>
+                </tr>
+                <tr th:each="l:${listeOperations}">
+                    <td th:text="${l.getNumeroOperation()}"></td>
+                    <td th:text="${l.getDateOperation()}"></td>
+                    <td th:text="${l.getMontant()}"></td>
+                    <td th:text="${l.class.simpleName}"></td>
+                    
+  <td th:if="${l.class.simpleName=='Virement'}" th:text="${l.getCodeCompteDestinataire()}"><td>
+                </tr>
+            </table>
+             <div class="container" >
+                <ul class="nav nav-pills">
+                    <li class="nav-item" th:each="l,status:${pages}">
+                        <a th:class="${currentPage==status.index}?'nav-link active':'nav-link'" th:text="${status.index}" th:href="@{/ListeOperations(codeCompte=${compte.codeCompte},p=${status.index},s=${s})}">
+                        </a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+            </div>
+            </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+.client-info-container{
+    padding:5%;
+    background-color: #F2F2F2;
+    margin-top:5%;
+    margin-bottom: 10%;
+    border-radius: 30px;
+    width: 50% !important;
+}
+.client-information{
+    font-size: 16pt;
+}
+.client-info-label{
+    font-weight: 600;
+}

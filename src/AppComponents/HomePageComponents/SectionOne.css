@@ -1,0 +1,27 @@
+.section-one-container{
+    margin-top:40px;
+    padding-top:50px;
+    margin-bottom:13%;
+}
+.p-text {
+    font-size:26pt;
+    font-weight: 600;
+    font-family: 'Roboto Condensed';
+    margin-bottom: 10px;
+}
+.image-container{
+    margin-top:15px;
+}
+.section-one-col1{
+padding-top:80px ;
+padding-left:15%;
+
+
+}
+.section-one-col2{
+    padding-top: 30px;
+    padding-right:5%;
+
+}
+
+
